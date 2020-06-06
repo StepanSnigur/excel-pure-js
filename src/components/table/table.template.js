@@ -2,20 +2,25 @@ const CODES = {
   A: 65,
   Z: 90
 }
-const toCell = (content = '') => `
-  <div class="cell" contenteditable>${content}</div>
+
+const toCell = (_, idx) => `
+  <div class="cell" data-index="index" data-id="${idx}" contenteditable></div>
 `
-const toColumn = (col = '') => `
-  <div class="column">${col}</div>
+const toColumn = (col = '', idx) => `
+  <div class="column" data-type="resizable" data-id="${idx}">
+    ${col}
+    <div class="col-resize" data-resize="col"></div>
+  </div>
 `
-const createRow = (rowContent, rowInfo = '') => {
-  return `
-    <div class="row">
-        <div class="row-info">${rowInfo}</div>
-        <div class="row-data">${rowContent}</div>
+const createRow = (rowContent, rowInfo = '') => `
+  <div class="row" data-type="resizable">
+    <div class="row-info">
+      ${rowInfo}
+      ${rowInfo && '<div class="row-resize" data-resize="row"></div>'}
     </div>
-  `
-}
+    <div class="row-data">${rowContent}</div>
+  </div>
+`
 const toChar = (_, idx) => String.fromCharCode(CODES.A + idx)
 
 export const createTable = (rowsCount = 15) => {
