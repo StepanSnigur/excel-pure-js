@@ -34,6 +34,9 @@ class Dom {
 
     return this
   }
+  findAll(selector) {
+    return this.$el.querySelectorAll(selector)
+  }
 }
 
 export function $(selector) {
