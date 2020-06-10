@@ -37,7 +37,7 @@ module.exports = {
       '@core': path.resolve(__dirname, 'src/core')
     }
   },
-  devtool: isProduction && 'source-map',
+  devtool: !isProduction && 'source-map',
   devServer: {
     port: 4200,
     hot: !isProduction

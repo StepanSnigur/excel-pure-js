@@ -8,19 +8,17 @@ class Formula extends ExcelComponent {
     super($root, {
       name: 'Formula',
       listeners: ['input', 'keydown'],
+      subscribe: ['currentText'],
       ...options
     })
   }
 
   init() {
     super.init();
-    this.formula = this.$root.find('div[contentEditable]')
+    this.$formula = this.$root.find('div[contentEditable]')
 
-    this.$on('table:select', ($cell) => {
-      this.formula.text($cell.text())
-    })
-    this.$on('table:input', ($input) => {
-      this.formula.text($input.text())
+    this.$on('table:select', $cell => {
+      this.$formula.text($cell.data.value)
     })
   }
 
@@ -29,6 +27,10 @@ class Formula extends ExcelComponent {
       <div class="info">fx</div>
       <div class="input" contenteditable spellcheck="false"></div>
     `
+  }
+
+  storeChanged({ currentText }) {
+    this.$formula.text(currentText)
   }
 
   onInput(e) {
