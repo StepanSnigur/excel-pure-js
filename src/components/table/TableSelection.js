@@ -13,6 +13,10 @@ class TableSelection {
     this.changeCurrentCell($el)
     $el.focus().addClass(TableSelection.className)
   }
+
+  get selectedIds() {
+    return this.group.map($el => $el.id())
+  }
   selectGroup($group) {
     this.clearGroup()
     this.group = $group
@@ -34,6 +38,11 @@ class TableSelection {
   }
   insertValue(val) {
     this.current.text(val)
+  }
+  applyStyle(style) {
+    this.group.forEach($cell => {
+      $cell.css(style)
+    })
   }
 }
 

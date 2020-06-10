@@ -13,11 +13,13 @@ class Dom {
     return this.$el.outerHTML
   }
   text(text) {
-    if (typeof text === 'string') {
+    if (typeof text !== 'undefined') {
       this.$el.textContent = text
       return this
     }
-    if (this.$el.tagName.toUpperCase() === 'input') return this.$el.value.trim()
+    if (this.$el.tagName.toLowerCase() === 'input') {
+      return this.$el.value.trim()
+    }
     return this.$el.textContent.trim()
   }
   clear() {
@@ -42,6 +44,22 @@ class Dom {
 
     return this
   }
+  css(styles = {}) {
+    Object.keys(styles).forEach(key => {
+      this.$el.style[key] = styles[key]
+    })
+  }
+  getStyles(styles = []) {
+    return styles.reduce((acc, i) => {
+      acc[i] = this.$el.style[i]
+      return acc
+    }, {})
+  }
+
+  get data() {
+    return this.$el.dataset
+  }
+
   findAll(selector) {
     return this.$el.querySelectorAll(selector)
   }
@@ -52,6 +70,15 @@ class Dom {
     this.$el.focus()
     return this
   }
+
+  attr(name, value) {
+    if (value) {
+      this.$el.setAttribute(name, value)
+      return this
+    }
+    return this.$el.getAttribute(name)
+  }
+
   addClass(className) {
     this.$el.classList.add(className)
     return this
