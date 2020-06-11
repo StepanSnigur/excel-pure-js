@@ -48,3 +48,5 @@ export const debounce = (callback, delay) => {
     timeout = setTimeout(later, delay)
   }
 }
+
+export const preventDefault = e => e.preventDefault()

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --open",
     "build": "cross-env NODE_ENV=production webpack --mode production",
+    "lint": "npx eslint ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

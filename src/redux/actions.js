@@ -3,7 +3,8 @@ import {
   CHANGE_STYLES,
   TABLE_RESIZE,
   APPLY_STYLE,
-  CHANGE_TABLE_TITLE
+  CHANGE_TABLE_TITLE,
+  UPDATE_DATE
 } from '@/redux/types'
 
 export const tableResize = payload => ({
@@ -29,4 +30,9 @@ export const applyStyle = payload => ({
 export const changeTableTitle = payload => ({
   type: CHANGE_TABLE_TITLE,
   payload
+})
+
+export const updateDate = () => ({
+  type: UPDATE_DATE,
+  payload: Date.now()
 })
