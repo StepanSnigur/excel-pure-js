@@ -2,7 +2,7 @@ import {
   CHANGE_TEXT,
   CHANGE_STYLES,
   TABLE_RESIZE,
-  APPLY_STYLE, CHANGE_TABLE_TITLE
+  APPLY_STYLE, CHANGE_TABLE_TITLE, UPDATE_DATE
 } from '@/redux/types'
 
 const rootReducer = (state, action) => {
@@ -51,6 +51,11 @@ const rootReducer = (state, action) => {
       return {
         ...state,
         tableTitle: action.payload
+      }
+    case UPDATE_DATE:
+      return {
+        ...state,
+        lastOpened: action.payload
       }
     default:
       return state
