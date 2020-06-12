@@ -8,15 +8,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const isProduction = process.env.NODE_ENV === 'production'
 const filename = ext => isProduction ? `bundle.[hash].${ext}` : `bundle.${ext}`
 const jsLoaders = () => {
-  const loaders = [
-    {
-      loader: 'babel-loader',
-      options: {
-        presets: ['@babel/preset-env'],
-        plugins: ['@babel/plugin-proposal-class-properties']
-      }
-    }
-  ]
+  const loaders = ['babel-loader']
 
   if (!isProduction) loaders.push('eslint-loader')
 
