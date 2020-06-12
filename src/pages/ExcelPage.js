@@ -1,6 +1,6 @@
 import Page from '@core/Page'
 import { debounce, storage } from '@core/utils'
-import createStore from '@core/createStore'
+import createStore from '@core/store/createStore'
 import rootReducer from '@/redux/rootReducer'
 import Excel from '@/components/excel/Excel'
 import Header from '@/components/header/Header'
