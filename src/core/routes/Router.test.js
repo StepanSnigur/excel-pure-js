@@ -1,5 +1,5 @@
 import Router from './Router'
-import Page from '../Page'
+import Page from '../page/Page'
 
 class MockDashboardPage extends Page {
   getRoot() {
@@ -25,8 +25,8 @@ describe('Router', () => {
   test('Should be defined', () => {
     expect(router).toBeDefined()
   })
-  test('Should render dashboard page', () => {
-    router.changePageHandler()
+  test('Should render dashboard page', async () => {
+    await router.changePageHandler()
     expect($root.innerHTML).toBe('<div>dashboard</div>')
   })
 })
