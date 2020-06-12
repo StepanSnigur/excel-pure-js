@@ -1,5 +1,6 @@
 import { $ } from '../dom'
 import ActiveRoute from '../routes/ActiveRoute'
+import Loader from '../../components/Loader'
 
 class Router {
   constructor(selector, routes) {
@@ -9,6 +10,7 @@ class Router {
     this.routes = routes
     this.changePageHandler = this.changePageHandler.bind(this)
 
+    this.loader = new Loader()
     this.page = null
 
     this.init()
@@ -22,15 +24,17 @@ class Router {
     window.removeEventListener('hashchange', this.changePageHandler)
   }
 
-  changePageHandler() {
+  async changePageHandler() {
     if (this.page) this.page.destroy()
     const activePath = ActiveRoute.path
 
+    this.$placeholder.clear().append(this.loader)
+
     const Page = this.routes[activePath || 'dashboard']
     this.page = new Page(ActiveRoute.param)
-    this.$placeholder.clear()
-    this.$placeholder.append(this.page.getRoot())
+    const root = await this.page.getRoot()
 
+    this.$placeholder.clear().append(root)
     this.page.afterRender()
   }
 }
